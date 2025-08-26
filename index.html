@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Embed Test</title>
+</head>
+<body>
+  <h1>Test Website</h1>
+  <p>This is a simple website to test the roof scanner embed.</p>
+  
+  <button data-roof-scanner-trigger>Open Roof Scanner</button>
+  
+  <!-- EMBED THE ROOF SCANNER -->
+  <script 
+    src="http://localhost:3333/src/main.js"
+    data-api-key="test-key"
+    data-mode="overlay">
+  </script>
+
+  <script>
+    // Debug logging
+    window.addEventListener('roofscanner:ready', () => {
+      console.log('✅ Roof Scanner widget loaded successfully!');
+    });
+
+    window.addEventListener('error', (e) => {
+      console.error('❌ Error:', e.message);
+    });
+
+    // Check if script loaded
+    setTimeout(() => {
+      if (window.RoofScanner) {
+        console.log('✅ RoofScanner API available');
+      } else {
+        console.error('❌ RoofScanner API not found - widget may not have loaded');
+      }
+    }, 2000);
+  </script>
+</body>
+</html>
